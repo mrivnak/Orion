@@ -109,7 +109,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: tauri
-          args: build --ci --target ${{ steps.set-target.outputs.target }} --bundles ${{ steps.set-target.outputs.bundles }}
+          args: build -v --ci --target ${{ steps.set-target.outputs.target }} --bundles ${{ steps.set-target.outputs.bundles }}
 
       - name: Build Changelog
         id: build-changelog
