@@ -23,6 +23,7 @@ jobs:
           toolchain: nightly
           target: x86_64-unknown-linux-gnu
           profile: minimal
+          default: true
       
       - name: Install Rust wasm32-unknown-unknown
         uses: actions-rs/toolchain@v1
@@ -35,13 +36,13 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: install
-          args: trunk --locked
+          args: trunk
 
       - name: Install Tauri CLI
         uses: actions-rs/cargo@v1
         with:
           command: install
-          args: tauri-cli --locked
+          args: tauri-cli
 
       - name: Build
         uses: actions-rs/cargo@v1
