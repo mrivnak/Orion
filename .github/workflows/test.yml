@@ -41,7 +41,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: install
-          args: tauri --locked
+          args: tauri-cli --locked
 
       - name: Build
         uses: actions-rs/cargo@v1
