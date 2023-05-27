@@ -15,22 +15,17 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-      - name: Install cargo-binstall
-        uses: taiki-e/install-action@v2
-        with:
-          tool: cargo-binstall
-
       - name: Install Trunk CLI
         uses: actions-rs/cargo@v1
         with:
-          command: binstall
-          args: trunk --locked --no-confirm
+          command: install
+          args: trunk --locked
 
       - name: Install Tauri CLI
         uses: actions-rs/cargo@v1
         with:
-          command: binstall
-          args: tauri-cli --locked --no-confirm
+          command: install
+          args: tauri-cli --locked
 
       - name: Install Rust nightly-x86_64-pc-windows-msvc
         if: matrix.platform == 'windows-latest'
