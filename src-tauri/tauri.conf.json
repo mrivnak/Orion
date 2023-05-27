@@ -1,7 +1,7 @@
 {
   "build": {
     "beforeDevCommand": "npx tailwindcss -i styles/tailwind.css -o static/styles/output.css; trunk serve",
-    "beforeBuildCommand": "npx tailwindcss -i styles/tailwind.css -o static/styles/output.css; trunk build",
+    "beforeBuildCommand": "npx tailwindcss -i styles/tailwind.css -o static/styles/output.css; trunk -v build; ls",
     "devPath": "http://localhost:1420",
     "distDir": "../dist",
     "withGlobalTauri": true
