@@ -6,7 +6,7 @@ on:
       - "v*"
 
 jobs:
-  backend-release:
+  release:
     strategy:
       fail-fast: false
       matrix:
@@ -15,7 +15,6 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-
       - name: Install Rust stable-x86_64-pc-windows-msvc
         if: matrix.platform == 'windows-latest'
         uses: actions-rs/toolchain@v1
@@ -57,7 +56,7 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
-          target: x86_64-windows-msvc
+          target: x86_64-pc-windows-msvc
           profile: minimal
 
       - name: Install Rust nightly-x86_64-apple-darwin
