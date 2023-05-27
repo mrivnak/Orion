@@ -21,7 +21,7 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-          target: x86_64-windows-msvc
+          target: x86_64-pc-windows-msvc
           default: true
 
       - name: Install Rust stable-x86_64-apple-darwin
