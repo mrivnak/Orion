@@ -23,7 +23,6 @@ jobs:
           toolchain: nightly
           target: x86_64-unknown-linux-gnu
           profile: minimal
-          default: true
       
       - name: Install Rust wasm32-unknown-unknown
         uses: actions-rs/toolchain@v1
