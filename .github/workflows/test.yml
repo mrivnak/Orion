@@ -17,6 +17,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install Trunk CLI
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: trunk
+
+      - name: Install Tauri CLI
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: tauri-cli
+
       - name: Install Rust x86_64-unknown-linux-gnu
         uses: actions-rs/toolchain@v1
         with:
@@ -30,18 +42,6 @@ jobs:
           toolchain: nightly
           target: wasm32-unknown-unknown
           profile: minimal
-
-      - name: Install Trunk CLI
-        uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: trunk
-
-      - name: Install Tauri CLI
-        uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: tauri-cli
 
       - name: Build
         uses: actions-rs/cargo@v1
