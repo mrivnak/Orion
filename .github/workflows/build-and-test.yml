@@ -73,7 +73,6 @@ jobs:
           command: tauri
           args: build --ci --target x86_64-unknown-linux-gnu --bundles none
 
-
       - name: Test
         uses: actions-rs/cargo@v1
         with:
