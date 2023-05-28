@@ -127,7 +127,7 @@ jobs:
         id: check-prerelease
         run: |
           pip install semver
-          python -c "import semver; print('prerelease=true') if semverVersion.parse('${{ github.ref_name }}'.replace('v', '')).prerelease else print('prerelease=false')" >> $GITHUB_OUTPUT
+          python -c "import semver; print('prerelease=true') if semver.Version.parse('${{ github.ref_name }}'.replace('v', '')).prerelease else print('prerelease=false')" >> $GITHUB_OUTPUT
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
