@@ -123,6 +123,11 @@ jobs:
         with:
           version: ${{ github.ref_name }}
 
+      - name: Check prerelease
+        id: check-prerelease
+        run: |
+          pip install semver
+          python -c "import semver; print('prerelease=true') if semverVersion.parse('${{ github.ref_name }}'.replace('v', '')).prerelease else print('prerelease=false')" >> $GITHUB_OUTPUT
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
@@ -134,5 +139,5 @@ jobs:
             ./target/**/release/bundle/appimage/*.AppImage
             ./target/**/release/bundle/nsis/*.exe
             ./target/**/release/bundle/dmg/*.dmg
-          prerelease: ${{ steps.parse-semver.outputs.prerelease }}
+          prerelease: ${{ steps.check-prerelease.outputs.prerelease }}
           generate_release_notes: true
