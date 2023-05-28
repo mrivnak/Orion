@@ -117,22 +117,22 @@ jobs:
           command: tauri
           args: build -v --ci --target ${{ steps.set-target.outputs.target }} --bundles ${{ steps.set-target.outputs.bundles }}
 
-      - name: Build Changelog
-        id: build-changelog
-        uses: mikepenz/release-changelog-builder-action@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Parse Semver
+        id: parse-semver
+        uses: madhead/semver-utils@1.0.0
         with:
-          ignorePreReleases: true
+          version: ${{ github.ref_name }}
+
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          body: ${{ steps.build-changelog.outputs.changelog }}
+          name: Release ${{ github.ref_name }}
           fail_on_unmatched_files: false
           files: |
             ./target/**/release/bundle/deb/*.deb
             ./target/**/release/bundle/appimage/*.AppImage
             ./target/**/release/bundle/nsis/*.exe
             ./target/**/release/bundle/dmg/*.dmg
-          name: Release ${{ github.ref_name }}
+          prerelease: ${{ steps.parse-semver.outputs.prerelease }}
+          generate_release_notes: true
